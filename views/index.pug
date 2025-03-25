@@ -1,12 +1,10 @@
-//- views/pages/home.pug
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title= title
-  body
-    h1= message
-    p This is a dynamic page rendered with Pug and Express.js.
+extends layout
 
+block content
+  h1= title
+  p Welcome to #[em SAC Registration System] very basic Express website developed as a tutorial example on the Mozilla Developer Network.
+
+  h1 Dynamic content
+
+  p The library has the following record counts:
 
