@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  if registrant_list.length
+    ul
+      each registrant in registrant_list
+        li
+          a(href=registrant.url) !{registrant.full_name}
+          |  (#{registrant.certificate.collage_name})
+
+  else
+    p There are no registrant.

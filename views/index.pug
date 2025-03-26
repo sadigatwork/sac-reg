@@ -1,10 +1,34 @@
-extends layout
+extends layouts/LayoutTheme
+include mixins/home/landing/HeroHeader
+include mixins/home/landing/Company
+include mixins/home/landing/AwesomeFeatures
+include mixins/home/landing/SmartFeatures
+include mixins/home/landing/About
+include mixins/home/landing/ChooseFeatures
+include mixins/home/landing/UltimateFeatures
+include mixins/home/landing/Pricing
+include mixins/home/landing/Testimonial
+include mixins/home/landing/Faq
+include mixins/home/landing/Cta
+include mixins/home/landing/Footer
 
-block content
-  h1= title
-  p Welcome to #[em SAC Registration System] very basic Express website developed as a tutorial example on the Mozilla Developer Network.
 
-  h1 Dynamic content
+append variables
+  - var currentPage = 'index'
 
-  p The library has the following record counts:
+prepend scripts
+  
 
+append content
+  +HeroHeader
+  +Companies
+  +AwesomeFeatures
+  +SmartFeatures
+  +About
+  +ChooseFeatures
+  +UltimateFeatures
+  +Pricing
+  +Testimonials
+  +Faqs
+  +Cta
+  +Footer

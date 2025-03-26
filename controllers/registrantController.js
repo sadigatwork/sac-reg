@@ -1,37 +1,46 @@
 const Registrant = require("../models/registrant");
-const { body, validationResult } = require("express-validator");
+const University = require("../models/university");
+const Certificate = require("../models/certificate");
+// const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
 exports.index = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Registrant index");
-  // Get details of books, book instances, authors and genre counts (in parallel)
-  // const [
-  //   numBooks,
-  //   numBookInstances,
-  //   numAvailableBookInstances,
-  //   numAuthors,
-  //   numGenres,
-  // ] = await Promise.all([
-  //   Book.countDocuments({}).exec(),
-  //   BookInstance.countDocuments({}).exec(),
-  //   BookInstance.countDocuments({ status: "Available" }).exec(),
-  //   Author.countDocuments({}).exec(),
-  //   Genre.countDocuments({}).exec(),
-  // ]);
+  // Get details of books, book instances, aertificates and genre counts (in parallel)
+  const [
+    numRegistrants,
+    // numBookInstances,
+    // numAvailableBookInstances,
+    numCertificates,
+    numUniversities,
+  ] = await Promise.all([
+    Registrant.countDocuments({}).exec(),
+    // BookInstance.countDocuments({}).exec(),
+    // BookInstance.countDocuments({ status: "Available" }).exec(),
+    Certificate.countDocuments({}).exec(),
+    University.countDocuments({}).exec(),
+  ]);
 
-  // res.render("index", {
-  //   title: "Local Library Home",
-  //   book_count: numBooks,
-  //   book_instance_count: numBookInstances,
-  //   book_instance_available_count: numAvailableBookInstances,
-  //   author_count: numAuthors,
-  //   genre_count: numGenres,
-  // });
+  res.render("index", {
+    title: "Local Library Home",
+    registrant_count: numRegistrants,
+    // book_instance_count: numBookInstances,
+    // book_instance_available_count: numAvailableBookInstances,
+    certificate_count: numCertificates,
+    university_count: numUniversities,
+  });
 });
 
 // Display list of all Registrants.
 exports.registrant_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Registrant list");
+  const allBooks = await Book.find({}, "full_name certificate")
+    .sort({ title: 1 })
+    .populate("certificate")
+    .exec();
+
+  res.render("registrant_list", {
+    title: "Registrant List",
+    registrant_list: allRegistrants,
+  });
 });
 
 // Display detail page for a specific Registrant.
