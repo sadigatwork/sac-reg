@@ -21,7 +21,7 @@ exports.index = asyncHandler(async (req, res, next) => {
   ]);
 
   res.render("index", {
-    title: "Local Library Home",
+    title: "SAC Registration Home",
     registrant_count: numRegistrants,
     // book_instance_count: numBookInstances,
     // book_instance_available_count: numAvailableBookInstances,
@@ -32,10 +32,14 @@ exports.index = asyncHandler(async (req, res, next) => {
 
 // Display list of all Registrants.
 exports.registrant_list = asyncHandler(async (req, res, next) => {
-  const allBooks = await Book.find({}, "full_name certificate")
-    .sort({ title: 1 })
-    .populate("certificate")
+  // const allRegistrants = await Registrant.find({}, "first_name certificate")
+  // const allRegistrants = await Registrant.find({}, "full_name")
+  const allRegistrants = await Registrant.find({}, {})
+    .sort({ full_name: 1 })
+    .lean()
+    // .populate("certificate")
     .exec();
+  console.log(allRegistrants);
 
   res.render("registrant_list", {
     title: "Registrant List",

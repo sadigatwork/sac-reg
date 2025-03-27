@@ -1,34 +1,16 @@
-extends layouts/LayoutTheme
-include mixins/home/landing/HeroHeader
-include mixins/home/landing/Company
-include mixins/home/landing/AwesomeFeatures
-include mixins/home/landing/SmartFeatures
-include mixins/home/landing/About
-include mixins/home/landing/ChooseFeatures
-include mixins/home/landing/UltimateFeatures
-include mixins/home/landing/Pricing
-include mixins/home/landing/Testimonial
-include mixins/home/landing/Faq
-include mixins/home/landing/Cta
-include mixins/home/landing/Footer
+extends layout
 
+block content
+  h1= title
+  p Welcome to #[em SAC Registration System], a very basic Express website developed as a tutorial example on the Mozilla Developer Network.
 
-append variables
-  - var currentPage = 'index'
+  h2 Dynamic content
 
-prepend scripts
-  
+  p The library has the following record counts:
 
-append content
-  +HeroHeader
-  +Companies
-  +AwesomeFeatures
-  +SmartFeatures
-  +About
-  +ChooseFeatures
-  +UltimateFeatures
-  +Pricing
-  +Testimonials
-  +Faqs
-  +Cta
-  +Footer
+  ul
+    li #[strong Registrants:] !{registrant_count}
+    //- li #[strong Copies:] !{book_instance_count}
+    //- li #[strong Copies available:] !{book_instance_available_count}
+    li #[strong Certificates:] !{certificate_count}
+    li #[strong Universities:] !{university_count}

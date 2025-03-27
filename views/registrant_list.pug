@@ -6,8 +6,12 @@ block content
     ul
       each registrant in registrant_list
         li
-          a(href=registrant.url) !{registrant.full_name}
-          |  (#{registrant.certificate.collage_name})
+          - const fullName = registrant.first_name+" "+registrant.second_name+" "+registrant.third_name+" "+registrant.last_name
+          //- a(href=registrant.url) !{registrant.full_name}
+          a(href=registrant.url) #{fullName}
+          //- !{registrant.first_name} !{registrant.second_name} !{registrant.last_name}
+          //- |  (#{registrant.certificate.collage_name})
 
   else
     p There are no registrant.
+
